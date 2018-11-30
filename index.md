@@ -1,37 +1,64 @@
-## Welcome to GitHub Pages
+##__Boyce-Codd Normal Form (BCNF)__
 
- You can use the [editor on GitHub](https://github.com/hoyol/gitwebsite/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+The reason for Boyce Codd Normal Form is to separate entities where a non-prime attribute cannot identify a prime attribute or has multiple candidate keys. Breaking down these entities and creating new entities in their place helps strengthen data quality and reduce redundancy as well as reducing update, insert, and delete anomalies.
 
- Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Example: Non-BCNF table
 
- ### Markdown
+	Here we have dependencies:
+		(Employee ID, Project) ----> Project_MGR
+			    Project_MGR ----> Project
 
- Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
- ```markdown
- Syntax highlighted code block
+    The problem for this table is that the project_MGR can identify the project. Which does not meet the condition
+    for BCNF
 
- # Header 1
- ## Header 2
- ### Header 3
+**Prior knowledge for this tutorial**
 
- - Bulleted
- - List
+[Normalization](https://www.techopedia.com/definition/1221/normalization)
 
- 1. Numbered
- 2. List
+[Relational Schema](https://medium.com/@kimtnguyen/relational-database-schema-design-overview-70e447ff66f9)
 
- **Bold** and _Italic_ and `Code` text
+[1st Normal Form](https://www.essentialsql.com/get-ready-to-learn-sql-8-database-first-normal-form-explained-in-simple-english/)
 
- [Link](url) and ![Image](src)
- ```
+[2nd Normal Form](https://www.essentialsql.com/get-ready-to-learn-sql-10-database-second-normal-form-explained-in-simple-english/)
 
- For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+[3rd Normal Form](https://www.essentialsql.com/get-ready-to-learn-sql-11-database-third-normal-form-explained-in-simple-english/)    
 
- ### Jekyll Themes
+##__Definitions__
 
- Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/hoyol/gitwebsite/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+*BCNF*: A stronger type of database normalization than 3rd normal form. The reson you want to use BCNF is because it insures that you do not have multiple overlapping candidate keys. Scroll down to see an example of converting from 3rd normal form to BCNF.
 
- ### Support or Contact
+*Candidate Key*: A collection of attributes which act as unique identifiers for an entity
 
- Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+*Non-Prime Attribute*: Any attribute not in the candidate key
+
+*Normalization*: A method of reducing dependency and redundancy of data, making the database more efficient and, in some cases, easier to read.
+
+*Prime Attribute*: Attributes that form the candidate key i.e. the attributes that the entity can be found by. Marked by an underline
+
+*Primary Key*: An attribute within the candidate key which is used as the primary identifier for the entity. Ex: Social Security Number for a person.
+
+A *relation schema* R is in BCNF if whenever a nontrivial functional dependency X â†’ A holds in R, then X is a superkey of R.
+
+##__The Process of Converting From 3rd Normal form to BCNF__
+
+Below is a table in 3rd normal form but not BCNF because employee id and project are both prime attributes but PROJECT_MGR is not a super key, however project manager can lead to project.
+
+![](./images/firstTable.png)
+
+To change from 3rd normal form to BCNF is to separate the table into two entities. In this case we can split EMPLOYEE ID into its own entity, which we will call EMPLOYEE. The remaining attributes, PROJECT_NAME and PROJECT_MGR, can be its own entity, which we will call PROJECT. We then add a new attribute to each of these entities so that we can get from one to another. Weâ€™ll call this new attribute PROJECT_ID.
+
+
+You fix this by splitting this into two table the EMPLOYEE entity would be:
+
+**EMPLOYEE**
+
+![](./images/secondTable.png)
+
+The PROJECT entity would would be:
+
+**PROJECT**
+
+![](./images/thirdTable.png)
+
+This is now in BCNF form because PROJECT ID is not a primary attribute in the PROJECT table. Thank you for following this tutorial!
