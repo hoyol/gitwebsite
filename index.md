@@ -38,7 +38,7 @@ Example: Non-BCNF table
 
 **Primary Key**: An attribute within the candidate key which is used as the primary identifier for the entity. Ex: Social Security Number for a person.
 
-A *relation schema* R is in BCNF if whenever a nontrivial functional dependency X â†’ A holds in R, then X is a superkey of R.
+A **relation schema** R is in BCNF if whenever a nontrivial functional dependency X â†’ A holds in R, then X is a superkey of R.
 
 ## __The Process of Converting From 3rd Normal form to BCNF__
 
