@@ -1,4 +1,4 @@
-### __Boyce-Codd Normal Form (BCNF)__
+# __Boyce-Codd Normal Form (BCNF)__
 
 The reason for Boyce Codd Normal Form is to separate entities where a non-prime attribute cannot identify a prime attribute or has multiple candidate keys. Breaking down these entities and creating new entities in their place helps strengthen data quality and reduce redundancy as well as reducing update, insert, and delete anomalies.
 
@@ -24,7 +24,7 @@ Example: Non-BCNF table
 
 [3rd Normal Form](https://www.essentialsql.com/get-ready-to-learn-sql-11-database-third-normal-form-explained-in-simple-english/)    
 
-## __Definitions__
+### __Definitions__
 
 **BCNF**: A stronger type of database normalization than 3rd normal form. The reson you want to use BCNF is because it insures that you do not have multiple overlapping candidate keys. Scroll down to see an example of converting from 3rd normal form to BCNF.
 
@@ -40,7 +40,7 @@ Example: Non-BCNF table
 
 A **relation schema** R is in BCNF if whenever a nontrivial functional dependency X â†’ A holds in R, then X is a superkey of R.
 
-## __The Process of Converting From 3rd Normal form to BCNF__
+### __The Process of Converting From 3rd Normal form to BCNF__
 
 Below is a table in 3rd normal form but not BCNF because employee id and project are both prime attributes but PROJECT_MGR is not a super key, however project manager can lead to project.
 
